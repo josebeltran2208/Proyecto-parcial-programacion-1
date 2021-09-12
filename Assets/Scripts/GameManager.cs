@@ -28,10 +28,24 @@ public class GameManager : MonoBehaviour
 
         
     }
-
-    public void StartGame()
+    public void menuinicial()
+    {
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1;
+    }
+    public void game()
     {
         SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+    }
+    public void nivel2()
+    {
+        SceneManager.LoadScene(2);
+        Time.timeScale = 1;
+    }
+    public void nivel3()
+    {
+        SceneManager.LoadScene(3);
         Time.timeScale = 1;
     }
 

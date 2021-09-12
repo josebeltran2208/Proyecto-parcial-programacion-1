@@ -7,9 +7,8 @@ public class Animal : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] bool movingRight;
     [SerializeField] GameManager gm;
-
+    [SerializeField] int puntosdevida;
     float minX, maxX;
-    int puntosDeVida = 5;
 
     // Start is called before the first frame update
     void Start()
@@ -50,12 +49,26 @@ public class Animal : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        if(collision.gameObject.CompareTag("Disparo") )
+        if (Time.timeScale < 1)
         {
-            gm.ReducirNumEnemigos();
-            Destroy(this.gameObject);
+
+            if (collision.gameObject.CompareTag("Disparo"))
+            {
+                gm.ReducirNumEnemigos();
+                Destroy(this.gameObject);
+            }
+        }
+        else
+        {
+            if (collision.gameObject.CompareTag("Disparo"))
+            {
+                puntosdevida--;
+                if (puntosdevida <= 0)
+                {
+                    Destroy(this.gameObject);
+                    gm.ReducirNumEnemigos();
+                }
+            }
         }
     }
-
 }
