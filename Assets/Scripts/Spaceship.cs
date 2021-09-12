@@ -10,8 +10,9 @@ public class Spaceship : MonoBehaviour
     [SerializeField] GameObject disparador;
 
     [SerializeField] float fireRate;
-    
 
+    float habilidad = 3f;
+    float Startingtime = 3f;
     float minX, maxX, minY, maxY;
     float nextFire = 0;
     float nextRafaga = 0;
@@ -42,6 +43,8 @@ public class Spaceship : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TiempoHabilidad();
+
         if(!gamePaused)
         {
             MoverNave();
@@ -112,4 +115,23 @@ public class Spaceship : MonoBehaviour
         }
     }
  
+    void TiempoHabilidad() 
+    {
+        Startingtime -= Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            habilidad--;
+            if (habilidad >= 0)
+            {
+                Time.timeScale = 0.5f;
+            }
+        }
+        if (Startingtime <= 0)
+        {
+            Time.timeScale = 1f;
+                Startingtime = 3f;
+        }
+            
+    }
+        
 }
